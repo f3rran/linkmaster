@@ -19,4 +19,4 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/{any}', 'SpaController@index')->where('any', '.*');
+Route::get('/admin/{any}', 'SpaController@index')->where('any', '.*')->middleware('auth');

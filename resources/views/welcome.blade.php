@@ -19,7 +19,7 @@
             <div class="inner">
             <h3 class="masthead-brand">Link Master</h3>
             <nav class="nav nav-masthead justify-content-center">
-                <a class="nav-link active" href="#">Inicio</a>
+                <a class="nav-link active" href="/admin/index">Inicio</a>
                 <a class="nav-link" href="#">Características</a>
                 <a class="nav-link" href="#">Contacto</a>
             </nav>

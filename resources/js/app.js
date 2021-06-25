@@ -14,12 +14,12 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         {
-            path: '/',
+            path: '/admin/',
             name: 'home',
             component: Home
         },
         {
-            path: '/hello',
+            path: '/admin/hello',
             name: 'hello',
             component: Hello,
         },

@@ -1,16 +1,27 @@
 <template>
-    <div>
-        <Menubar :model="items" />
-        <h1>Vue Router Demo App</h1>
-
-        <p>
-            <router-link :to="{ name: 'home' }">Home</router-link> |
-            <router-link :to="{ name: 'hello' }">Hello World</router-link>
-        </p>
-
-        <div class="container">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="masthead mb-auto">
+            <div class="inner">
+            <h3 class="masthead-brand">Administrar</h3>
+            <nav class="nav nav-masthead justify-content-center row">
+                <router-link class="col-2 ml-2" :to="{ name: 'home' }">Inicio</router-link>
+                <router-link class="col-2" :to="{ name: 'hello' }">Ajustes</router-link>
+                <router-link class="col-2" :to="{ name: 'hello' }">Perfil</router-link>
+                <router-link class="col-4" :to="{ name: 'hello' }">Cerrar sesión</router-link>
+            </nav>
+            <hr>
+            </div>
+        </header>
+<br>
+        <main role="main" class="container">
             <router-view></router-view>
-        </div>
+        </main>
+
+        <footer class="mastfoot mt-auto">
+            <div class="inner">
+            <p class="text-center">Proyecto desarrollado por <a href="https://f3rran.github.io">f3rran</a>.</p>
+            </div>
+        </footer>
     </div>
 </template>
 <script>

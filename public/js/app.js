@@ -28,6 +28,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -170,11 +181,11 @@ vue__WEBPACK_IMPORTED_MODULE_0__.default.use(primevue_config__WEBPACK_IMPORTED_M
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__.default({
   mode: 'history',
   routes: [{
-    path: '/',
+    path: '/admin/',
     name: 'home',
     component: _views_Home_vue__WEBPACK_IMPORTED_MODULE_4__.default
   }, {
-    path: '/hello',
+    path: '/admin/hello',
     name: 'hello',
     component: _views_Hello_vue__WEBPACK_IMPORTED_MODULE_3__.default
   }]
@@ -2583,31 +2594,80 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    {
+      staticClass: "cover-container d-flex w-100 h-100 p-3 mx-auto flex-column"
+    },
     [
-      _c("Menubar", { attrs: { model: _vm.items } }),
+      _c("header", { staticClass: "masthead mb-auto" }, [
+        _c("div", { staticClass: "inner" }, [
+          _c("h3", { staticClass: "masthead-brand" }, [_vm._v("Administrar")]),
+          _vm._v(" "),
+          _c(
+            "nav",
+            { staticClass: "nav nav-masthead justify-content-center row" },
+            [
+              _c(
+                "router-link",
+                { staticClass: "col-2 ml-2", attrs: { to: { name: "home" } } },
+                [_vm._v("Inicio")]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                { staticClass: "col-2", attrs: { to: { name: "hello" } } },
+                [_vm._v("Ajustes")]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                { staticClass: "col-2", attrs: { to: { name: "hello" } } },
+                [_vm._v("Perfil")]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                { staticClass: "col-4", attrs: { to: { name: "hello" } } },
+                [_vm._v("Cerrar sesión")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("hr")
+        ])
+      ]),
       _vm._v(" "),
-      _c("h1", [_vm._v("Vue Router Demo App")]),
+      _c("br"),
       _vm._v(" "),
       _c(
-        "p",
-        [
-          _c("router-link", { attrs: { to: { name: "home" } } }, [
-            _vm._v("Home")
-          ]),
-          _vm._v(" |\n        "),
-          _c("router-link", { attrs: { to: { name: "hello" } } }, [
-            _vm._v("Hello World")
-          ])
-        ],
+        "main",
+        { staticClass: "container", attrs: { role: "main" } },
+        [_c("router-view")],
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "container" }, [_c("router-view")], 1)
-    ],
-    1
+      _vm._m(0)
+    ]
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("footer", { staticClass: "mastfoot mt-auto" }, [
+      _c("div", { staticClass: "inner" }, [
+        _c("p", { staticClass: "text-center" }, [
+          _vm._v("Proyecto desarrollado por "),
+          _c("a", { attrs: { href: "https://f3rran.github.io" } }, [
+            _vm._v("f3rran")
+          ]),
+          _vm._v(".")
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

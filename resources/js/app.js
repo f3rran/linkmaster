@@ -14,7 +14,7 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         {
-            path: '/admin/',
+            path: '/admin/home',
             name: 'home',
             component: Home
         },

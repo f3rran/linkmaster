@@ -7,7 +7,7 @@
                 <router-link class="col-2 ml-2" :to="{ name: 'home' }">Inicio</router-link>
                 <router-link class="col-2" :to="{ name: 'hello' }">Ajustes</router-link>
                 <router-link class="col-2" :to="{ name: 'hello' }">Perfil</router-link>
-                <router-link class="col-4" :to="{ name: 'hello' }">Cerrar sesión</router-link>
+                <a href="/logout" class="col-4">Cerrar sesión</a>
             </nav>
             <hr>
             </div>

@@ -1,13 +1,23 @@
 <template>
 <div class="container">
-  <Card>
-	  <template #title>
-        Visitas
-    </template>
-    <template #content>
-        32
-    </template>
-  </Card>
+  <div class="row mb-4">
+    <Card class="col-5 mr-4 ml-4">
+      <template #title>
+          Visitas
+      </template>
+      <template #content>
+          32
+      </template>
+    </Card>
+    <Card class="col-5 ml-4 mr-4">
+      <template #title>
+          Clicks
+      </template>
+      <template #content>
+          16
+      </template>
+    </Card>
+  </div>
   <DataTable v-if="showBoards" :value="boards">
     <template #header>
         <div class="table-header">

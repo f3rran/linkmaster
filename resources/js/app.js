@@ -6,6 +6,7 @@ Vue.use(VueRouter)
 import App from './views/App.vue'
 import Hello from './views/Hello.vue'
 import Home from './views/Home.vue'
+import Settings from './views/Settings.vue'
 import Edit from './views/LinkBoards/Edit.vue'
 
 import PrimeVue from 'primevue/config';
@@ -28,6 +29,11 @@ const router = new VueRouter({
             path: '/admin/create',
             name: 'Create LinkBoard',
             component: Edit
+        },
+        {
+            path: '/admin/settings',
+            name: 'Settings',
+            component: Settings
         },
         {
             path: '/admin/:id/edit',

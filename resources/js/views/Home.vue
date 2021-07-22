@@ -1,7 +1,7 @@
 <template>
 <div class="container">
   <div class="row mb-4">
-    <Card class="col-5 mr-4 ml-4">
+    <Card class="col-4 mr-2 ml-2">
       <template #title>
           Visitas
       </template>
@@ -9,12 +9,20 @@
           32
       </template>
     </Card>
-    <Card class="col-5 ml-4 mr-4">
+    <Card class="col-4 ml-2 mr-2">
       <template #title>
           Clicks
       </template>
       <template #content>
           16
+      </template>
+    </Card>
+    <Card class="col-3 ml-2 mr-2">
+      <template #title>
+          Link público
+      </template>
+      <template #content>
+          <Button label="Ir al tablero" class="p-button-rounded p-button-info mr-2"/>
       </template>
     </Card>
   </div>
@@ -27,16 +35,28 @@
             </div>
         </div>
     </template>
-    <Column field="title" header="Título"></Column>
+    <Column field="title" header=""></Column>
     <Column field="id" header="">
       <template #body="slotProps" >
         <div class="d-flex flex-row justify-content-end">
           <router-link :to="{ name: 'Edit LinkBoard', params: { id: slotProps.data.id}}"><Button icon="pi pi-pencil" class="p-button-rounded p-button-info p-mr-2 mr-2"/></router-link>
-          <Button @click="deleteBoard(slotProps.data.id)" icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2"/>
+          <Button @click="display = true; deleteFocus = slotProps.data.id" icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2"/>
         </div>
       </template>
     </Column>
   </DataTable>
+  <Dialog header="Header" :visible.sync="display" >
+    <template #header>
+		  <h3>Borrar tablero</h3>
+	  </template>
+	  ¿Está seguro que desea eliminar el tablero?
+
+    <template #footer>
+		    <Button label="Cancelar"  @click="display = false" icon="pi pi-times" class="p-button-text"/>
+        <Button label="Confirmar" @click="deleteBoard(deleteFocus)" icon="pi pi-check" autofocus />
+	  </template>
+  </Dialog>
+
 </div>
 </template>
 
@@ -45,6 +65,7 @@ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Card from 'primevue/card';
 import Button from 'primevue/button';
+import Dialog from 'primevue/dialog';
 
 
 import axios from 'axios'
@@ -53,12 +74,15 @@ export default {
     DataTable,
     Column,
     Card,
-    Button
+    Button,
+    Dialog
   },
   data() {
         return {
             boards: null,
             showBoards: false,
+            display: false,
+            deleteFocus: 0,
         }
   },
   mounted() {
@@ -75,7 +99,10 @@ export default {
       .then(function(response){
         console.log(response);
         that.initDatatable();
-      })
+      });
+
+      this.display = false;
+      this.deleteFocus = 0;
     },
     initDatatable(){
       const that = this;

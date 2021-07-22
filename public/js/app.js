@@ -1987,8 +1987,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primevue_column__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primevue/column */ "./node_modules/primevue/column/index.js");
 /* harmony import */ var primevue_card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primevue/card */ "./node_modules/primevue/card/index.js");
 /* harmony import */ var primevue_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primevue/button */ "./node_modules/primevue/button/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var primevue_dialog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! primevue/dialog */ "./node_modules/primevue/dialog/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
 //
 //
 //
@@ -2031,6 +2032,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -2041,12 +2063,15 @@ __webpack_require__.r(__webpack_exports__);
     DataTable: primevue_datatable__WEBPACK_IMPORTED_MODULE_0__.default,
     Column: primevue_column__WEBPACK_IMPORTED_MODULE_1__.default,
     Card: primevue_card__WEBPACK_IMPORTED_MODULE_2__.default,
-    Button: primevue_button__WEBPACK_IMPORTED_MODULE_3__.default
+    Button: primevue_button__WEBPACK_IMPORTED_MODULE_3__.default,
+    Dialog: primevue_dialog__WEBPACK_IMPORTED_MODULE_4__.default
   },
   data: function data() {
     return {
       boards: null,
-      showBoards: false
+      showBoards: false,
+      display: false,
+      deleteFocus: 0
     };
   },
   mounted: function mounted() {
@@ -2055,7 +2080,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     deleteBoard: function deleteBoard(id) {
       var that = this;
-      axios__WEBPACK_IMPORTED_MODULE_4___default().delete('/api/boards/delete', {
+      axios__WEBPACK_IMPORTED_MODULE_5___default().delete('/api/boards/delete', {
         data: {
           id: id
         }
@@ -2063,11 +2088,13 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response);
         that.initDatatable();
       });
+      this.display = false;
+      this.deleteFocus = 0;
     },
     initDatatable: function initDatatable() {
       var that = this;
       that.showBoards = false;
-      axios__WEBPACK_IMPORTED_MODULE_4___default().get('/api/boards/index').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_5___default().get('/api/boards/index').then(function (response) {
         console.log(response);
         that.boards = response.data;
         that.showBoards = true;
@@ -2148,6 +2175,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
 //
 //
 //
@@ -2414,6 +2442,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.p-datatable {\n    position: relative;\n}\n.p-datatable table {\n    border-collapse: collapse;\n    width: 100%;\n    table-layout: fixed;\n}\n.p-datatable .p-sortable-column {\n    cursor: pointer;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n.p-datatable .p-sortable-column .p-column-title,\n.p-datatable .p-sortable-column .p-sortable-column-icon,\n.p-datatable .p-sortable-column .p-sortable-column-badge {\n    vertical-align: middle;\n}\n.p-datatable .p-sortable-column .p-sortable-column-badge {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n}\n.p-datatable-auto-layout > .p-datatable-wrapper {\n    overflow-x: auto;\n}\n.p-datatable-auto-layout > .p-datatable-wrapper > table {\n    table-layout: auto;\n}\n.p-datatable-hoverable-rows .p-selectable-row {\n    cursor: pointer;\n}\n\n/* Scrollable */\n.p-datatable-scrollable-wrapper {\n    position: relative;\n}\n.p-datatable-scrollable-header,\n.p-datatable-scrollable-footer {\n    overflow: hidden;\n}\n.p-datatable-scrollable-body {\n    overflow: auto;\n    position: relative;\n}\n.p-datatable-scrollable-body > table > .p-datatable-tbody > tr:first-child > td {\n    border-top: 0 none;\n}\n.p-datatable-virtual-table {\n    position: absolute;\n}\n\n/* Frozen Columns */\n.p-datatable-frozen-view .p-datatable-scrollable-body {\n    overflow: hidden;\n}\n.p-datatable-frozen-view > .p-datatable-scrollable-body > table > .p-datatable-tbody > tr > td:last-child {\n    border-right: 0 none;\n}\n.p-datatable-unfrozen-view {\n    position: absolute;\n    top: 0;\n}\n\n/* Flex Scrollable */\n.p-datatable-flex-scrollable {\n    display: flex;\n    flex-direction: column;\n    flex: 1;\n    height: 100%;\n}\n.p-datatable-flex-scrollable .p-datatable-scrollable-wrapper,\n.p-datatable-flex-scrollable .p-datatable-scrollable-view {\n    display: flex;\n    flex-direction: column;\n    flex: 1;\n    height: 100%;\n}\n.p-datatable-flex-scrollable .p-datatable-scrollable-body {\n    flex: 1;\n}\n\n/* Resizable */\n.p-datatable-resizable > .p-datatable-wrapper {\n    overflow-x: auto;\n}\n.p-datatable-resizable .p-datatable-thead > tr > th,\n.p-datatable-resizable .p-datatable-tfoot > tr > td,\n.p-datatable-resizable .p-datatable-tbody > tr > td {\n    overflow: hidden;\n    white-space: nowrap;\n}\n.p-datatable-resizable .p-resizable-column {\n    background-clip: padding-box;\n    position: relative;\n}\n.p-datatable-resizable-fit .p-resizable-column:last-child .p-column-resizer {\n    display: none;\n}\n.p-datatable .p-column-resizer {\n    display: block;\n    position: absolute !important;\n    top: 0;\n    right: 0;\n    margin: 0;\n    width: .5rem;\n    height: 100%;\n    padding: 0px;\n    cursor:col-resize;\n    border: 1px solid transparent;\n}\n.p-datatable .p-column-resizer-helper {\n    width: 1px;\n    position: absolute;\n    z-index: 10;\n    display: none;\n}\n.p-datatable .p-row-editor-init,\n.p-datatable .p-row-editor-save,\n.p-datatable .p-row-editor-cancel {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    overflow: hidden;\n    position: relative;\n}\n\n/* Expand */\n.p-datatable .p-row-toggler {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    overflow: hidden;\n    position: relative;\n}\n\n/* Reorder */\n.p-datatable-reorder-indicator-up,\n.p-datatable-reorder-indicator-down {\n    position: absolute;\n    display: none;\n}\n\n/* Loader */\n.p-datatable .p-datatable-loading-overlay {\n    position: absolute;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    z-index: 2;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/primevue/dialog/Dialog.vue?vue&type=style&index=0&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/primevue/dialog/Dialog.vue?vue&type=style&index=0&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.p-dialog-mask {\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    pointer-events: none;\n    background-color: transparent;\n    transition-property: background-color;\n}\n.p-dialog-mask.p-component-overlay {\n    pointer-events: auto;\n}\n.p-dialog {\n    display: flex;\n    flex-direction: column;\n    pointer-events: auto;\n    max-height: 90%;\n    transform: scale(1);\n}\n.p-dialog-content {\n    overflow-y: auto;\n}\n.p-dialog-header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    flex-shrink: 0;\n}\n.p-dialog-footer {\n    flex-shrink: 0;\n}\n.p-dialog .p-dialog-header-icons {\n    display: flex;\n    align-items: center;\n}\n.p-dialog .p-dialog-header-icon {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    overflow: hidden;\n    position: relative;\n}\n\n/* Fluid */\n.p-fluid .p-dialog-footer .p-button {\n    width: auto;\n}\n\n/* Animation */\n/* Center */\n.p-dialog-enter-active {\n    transition: all 150ms cubic-bezier(0, 0, 0.2, 1);\n}\n.p-dialog-leave-active {\n    transition: all 150ms cubic-bezier(0.4, 0.0, 0.2, 1);\n}\n.p-dialog-enter,\n.p-dialog-leave-to {\n    opacity: 0;\n    transform: scale(0.7);\n}\n.p-dialog-mask.p-dialog-mask-leave {\n    background-color: transparent;\n}\n\n/* Top, Bottom, Left, Right, Top* and Bottom* */\n.p-dialog-top .p-dialog,\n.p-dialog-bottom .p-dialog,\n.p-dialog-left .p-dialog,\n.p-dialog-right .p-dialog,\n.p-dialog-topleft .p-dialog,\n.p-dialog-topright .p-dialog,\n.p-dialog-bottomleft .p-dialog,\n.p-dialog-bottomright .p-dialog {\n    margin: .75rem;\n    transform: translate3d(0px, 0px, 0px);\n}\n.p-dialog-top .p-dialog-enter-active,\n.p-dialog-top .p-dialog-leave-active,\n.p-dialog-bottom .p-dialog-enter-active,\n.p-dialog-bottom .p-dialog-leave-active,\n.p-dialog-left .p-dialog-enter-active,\n.p-dialog-left .p-dialog-leave-active,\n.p-dialog-right .p-dialog-enter-active,\n.p-dialog-right .p-dialog-leave-active,\n.p-dialog-topleft .p-dialog-enter-active,\n.p-dialog-topleft .p-dialog-leave-active,\n.p-dialog-topright .p-dialog-enter-active,\n.p-dialog-topright .p-dialog-leave-active,\n.p-dialog-bottomleft .p-dialog-enter-active,\n.p-dialog-bottomleft .p-dialog-leave-active,\n.p-dialog-bottomright .p-dialog-enter-active,\n.p-dialog-bottomright .p-dialog-leave-active {\n    transition: all .3s ease-out;\n}\n.p-dialog-top .p-dialog-enter,\n.p-dialog-top .p-dialog-leave-to {\n    transform: translate3d(0px, -100%, 0px);\n}\n.p-dialog-bottom .p-dialog-enter,\n.p-dialog-bottom .p-dialog-leave-to {\n    transform: translate3d(0px, 100%, 0px);\n}\n.p-dialog-left .p-dialog-enter,\n.p-dialog-left .p-dialog-leave-to,\n.p-dialog-topleft .p-dialog-enter,\n.p-dialog-topleft .p-dialog-leave-to,\n.p-dialog-bottomleft .p-dialog-enter,\n.p-dialog-bottomleft .p-dialog-leave-to {\n    transform: translate3d(-100%, 0px, 0px);\n}\n.p-dialog-right .p-dialog-enter,\n.p-dialog-right .p-dialog-leave-to,\n.p-dialog-topright .p-dialog-enter,\n.p-dialog-topright .p-dialog-leave-to,\n.p-dialog-bottomright .p-dialog-enter,\n.p-dialog-bottomright .p-dialog-leave-to {\n    transform: translate3d(100%, 0px, 0px);\n}\n\n/* Maximize */\n.p-dialog-maximized {\n    transition: none;\n    transform: none;\n    width: 100vw !important;\n    max-height: 100%;\n    height: 100%;\n}\n.p-dialog-maximized .p-dialog-content {\n    flex-grow: 1;\n}\n\n/* Position */\n.p-dialog-left {\n    justify-content: flex-start;\n}\n.p-dialog-right {\n    justify-content: flex-end;\n}\n.p-dialog-top {\n    align-items: flex-start;\n}\n.p-dialog-topleft {\n    justify-content: flex-start;\n    align-items: flex-start;\n}\n.p-dialog-topright {\n    justify-content: flex-end;\n    align-items: flex-start;\n}\n.p-dialog-bottom {\n    align-items: flex-end;\n}\n.p-dialog-bottomleft {\n    justify-content: flex-start;\n    align-items: flex-end;\n}\n.p-dialog-bottomright {\n    justify-content: flex-end;\n    align-items: flex-end;\n}\n.p-confirm-dialog .p-dialog-content {\n    display: flex;\n    align-items: center;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2862,6 +2914,18 @@ module.exports = __webpack_require__(/*! ./PrimeVue.js */ "./node_modules/primev
 "use strict";
 
 module.exports = __webpack_require__(/*! ./DataTable.vue */ "./node_modules/primevue/datatable/DataTable.vue");
+
+/***/ }),
+
+/***/ "./node_modules/primevue/dialog/index.js":
+/*!***********************************************!*\
+  !*** ./node_modules/primevue/dialog/index.js ***!
+  \***********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+module.exports = __webpack_require__(/*! ./Dialog.vue */ "./node_modules/primevue/dialog/Dialog.vue");
 
 /***/ }),
 
@@ -4052,6 +4116,30 @@ exports.default = ObjectUtils;
 
 /***/ }),
 
+/***/ "./node_modules/primevue/utils/UniqueComponentId.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/primevue/utils/UniqueComponentId.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.default = _default;
+var lastId = 0;
+
+function _default() {
+  var prefix = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'pv_id_';
+  lastId++;
+  return "".concat(prefix).concat(lastId);
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/process/browser.js":
 /*!*****************************************!*\
   !*** ./node_modules/process/browser.js ***!
@@ -4333,6 +4421,36 @@ var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMP
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_vue_loader_lib_index_js_vue_loader_options_DataTable_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/primevue/dialog/Dialog.vue?vue&type=style&index=0&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/primevue/dialog/Dialog.vue?vue&type=style&index=0&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_vue_loader_lib_index_js_vue_loader_options_Dialog_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../vue-loader/lib/loaders/stylePostLoader.js!../../postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../vue-loader/lib/index.js??vue-loader-options!./Dialog.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/primevue/dialog/Dialog.vue?vue&type=style&index=0&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_vue_loader_lib_index_js_vue_loader_options_Dialog_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_vue_loader_lib_index_js_vue_loader_options_Dialog_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 
@@ -8975,6 +9093,330 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/primevue/dialog/Dialog.vue":
+/*!*************************************************!*\
+  !*** ./node_modules/primevue/dialog/Dialog.vue ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Dialog_vue_vue_type_template_id_2c914024___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Dialog.vue?vue&type=template&id=2c914024& */ "./node_modules/primevue/dialog/Dialog.vue?vue&type=template&id=2c914024&");
+/* harmony import */ var _Dialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Dialog.vue?vue&type=script&lang=js& */ "./node_modules/primevue/dialog/Dialog.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Dialog_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Dialog.vue?vue&type=style&index=0&lang=css& */ "./node_modules/primevue/dialog/Dialog.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
+  _Dialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _Dialog_vue_vue_type_template_id_2c914024___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Dialog_vue_vue_type_template_id_2c914024___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "node_modules/primevue/dialog/Dialog.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/primevue/dialog/Dialog.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/primevue/dialog/Dialog.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _utils_UniqueComponentId__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/UniqueComponentId */ "./node_modules/primevue/utils/UniqueComponentId.js");
+/* harmony import */ var _utils_DomHandler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/DomHandler */ "./node_modules/primevue/utils/DomHandler.js");
+/* harmony import */ var _ripple_Ripple__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ripple/Ripple */ "./node_modules/primevue/ripple/Ripple.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+    inheritAttrs: false,
+    props: {
+        header: null,
+        footer: null,
+        visible: Boolean,
+        modal: Boolean,
+        contentStyle: null,
+        rtl: Boolean,
+        maximizable: Boolean,
+        dismissableMask: Boolean,
+        closable: {
+            type: Boolean,
+            default: true
+        },
+        closeOnEscape: {
+            type: Boolean,
+            default: true
+        },
+        showHeader: {
+            type: Boolean,
+            default: true
+        },
+        baseZIndex: {
+            type: Number,
+            default: 0
+        },
+        autoZIndex: {
+            type: Boolean,
+            default: true
+        },
+        ariaCloseLabel: {
+            type: String,
+            default: 'close'
+        },
+        position: {
+            type: String,
+            default: 'center'
+        }
+    },
+    data() {
+        return {
+            dialogClasses: null,
+            dialogStyles: null,
+            maskVisible: this.visible,
+            maximized: false
+        }
+    },
+    documentKeydownListener: null,
+    updated() {
+        this.removeStylesFromMask();
+
+        if (this.visible && !this.maskVisible) {
+            this.maskVisible = true;
+        }
+
+        if (this.modal && this.$refs.mask && !_utils_DomHandler__WEBPACK_IMPORTED_MODULE_1__.default.hasClass(this.$refs.mask, 'p-component-overlay')) {
+            _utils_DomHandler__WEBPACK_IMPORTED_MODULE_1__.default.addClass(this.$refs.mask, 'p-component-overlay');
+        }
+    },
+    mounted() {
+        this.removeStylesFromMask();
+    },
+    beforeDestroy() {
+        this.disableDocumentSettings();
+    },
+    methods: {
+        close() {
+            this.$emit('update:visible', false);
+        },
+        onBeforeEnter(el) {
+            if (this.autoZIndex) {
+                el.style.zIndex = String(this.baseZIndex + _utils_DomHandler__WEBPACK_IMPORTED_MODULE_1__.default.generateZIndex());
+            }
+        },
+        onEnter() {
+            this.$refs.mask.style.zIndex = String(parseInt(this.$refs.dialog.style.zIndex, 10) - 1);
+
+            this.$emit('show');
+            this.focus();
+            this.enableDocumentSettings();
+        },
+        onBeforeLeave() {
+            _utils_DomHandler__WEBPACK_IMPORTED_MODULE_1__.default.addClass(this.$refs.mask, 'p-dialog-mask-leave');
+        },
+        onLeave() {
+            this.$emit('hide');
+        },
+        onAfterLeave() {
+            this.maskVisible = false;
+            this.disableDocumentSettings();
+        },
+        onAppear() {
+            if (this.visible) {
+                this.onEnter();
+            }
+        },
+        onMaskClick(event) {
+            if (this.dismissableMask && this.closable && this.modal && this.$refs.mask === event.target) {
+                this.close();
+            }
+        },
+        focus() {
+            let focusTarget = this.$refs.dialog.querySelector('[autofocus]');
+            if (focusTarget) {
+                focusTarget.focus();
+            }
+        },
+        maximize() {
+            this.maximized = !this.maximized;
+
+            if (!this.modal) {
+                if (this.maximized)
+                    _utils_DomHandler__WEBPACK_IMPORTED_MODULE_1__.default.addClass(document.body, 'p-overflow-hidden');
+                else
+                    _utils_DomHandler__WEBPACK_IMPORTED_MODULE_1__.default.removeClass(document.body, 'p-overflow-hidden');
+            }
+        },
+        enableDocumentSettings() {
+            if (this.modal) {
+                _utils_DomHandler__WEBPACK_IMPORTED_MODULE_1__.default.addClass(document.body, 'p-overflow-hidden');
+                this.bindDocumentKeydownListener();
+            }
+            else if (this.maximizable && this.maximized) {
+                _utils_DomHandler__WEBPACK_IMPORTED_MODULE_1__.default.addClass(document.body, 'p-overflow-hidden');
+            }
+        },
+        disableDocumentSettings() {
+            if (this.modal) {
+                _utils_DomHandler__WEBPACK_IMPORTED_MODULE_1__.default.removeClass(document.body, 'p-overflow-hidden');
+                this.unbindDocumentKeydownListener();
+            }
+            else if (this.maximizable && this.maximized) {
+                _utils_DomHandler__WEBPACK_IMPORTED_MODULE_1__.default.removeClass(document.body, 'p-overflow-hidden');
+            }
+        },
+        onKeyDown(event) {
+            if (event.which === 9) {
+                event.preventDefault();
+                let focusableElements = _utils_DomHandler__WEBPACK_IMPORTED_MODULE_1__.default.getFocusableElements(this.$refs.dialog);
+                if (focusableElements && focusableElements.length > 0) {
+                    if (!document.activeElement) {
+                        focusableElements[0].focus();
+                    }
+                    else {
+                        let focusedIndex = focusableElements.indexOf(document.activeElement);
+                        if (event.shiftKey) {
+                            if (focusedIndex == -1 || focusedIndex === 0)
+                                focusableElements[focusableElements.length - 1].focus();
+                            else
+                                focusableElements[focusedIndex - 1].focus();
+                        }
+                        else {
+                            if (focusedIndex == -1 || focusedIndex === (focusableElements.length - 1))
+                                focusableElements[0].focus();
+                            else
+                                focusableElements[focusedIndex + 1].focus();
+                        }
+                    }
+                }
+            } else if (event.which === 27 && this.closeOnEscape) {
+                this.close();
+            }
+        },
+        bindDocumentKeydownListener() {
+            if (!this.documentKeydownListener) {
+                this.documentKeydownListener = this.onKeyDown.bind(this);
+                window.document.addEventListener('keydown', this.documentKeydownListener);
+            }
+        },
+        unbindDocumentKeydownListener() {
+            if (this.documentKeydownListener) {
+                window.document.removeEventListener('keydown', this.documentKeydownListener);
+                this.documentKeydownListener = null;
+            }
+        },
+        getPositionClass() {
+            const positions = ['left', 'right', 'top', 'topleft', 'topright', 'bottom', 'bottomleft', 'bottomright'];
+            const pos = positions.find(item => item === this.position);
+
+            return pos ? `p-dialog-${pos}` : '';
+        },
+        removeStylesFromMask() {
+            if (this.$refs.mask) {
+                this.dialogStyles = this.$vnode.data.style;
+                if (this.dialogStyles) {
+                    Object.keys(this.dialogStyles).forEach((key) => {
+                        this.$refs.mask.style[key] = '';
+                    });
+                }
+
+                this.dialogClasses = this.$vnode.data.class || this.$vnode.data.staticClass;
+                if (this.dialogClasses) {
+                    this.$refs.mask.classList = 'p-dialog-mask' + (this.modal && ' p-component-overlay ') + this.getPositionClass();
+                }
+            }
+        }
+    },
+    computed: {
+        listeners() {
+            return {
+                ...this.$listeners
+            };
+        },
+        maskClass() {
+            return ['p-dialog-mask', this.getPositionClass()];
+        },
+        dialogClass() {
+            return ['p-dialog p-component', {
+                'p-dialog-rtl': this.rtl,
+                'p-dialog-maximized': this.maximizable && this.maximized
+            }, this.dialogClasses];
+        },
+        maximizeIconClass() {
+            return ['p-dialog-header-maximize-icon pi', {
+                'pi-window-maximize': !this.maximized,
+                'pi-window-minimize': this.maximized
+            }];
+        },
+        dialogStyle() {
+            return this.dialogStyles;
+        },
+        ariaId() {
+            return (0,_utils_UniqueComponentId__WEBPACK_IMPORTED_MODULE_0__.default)();
+        },
+        ariaLabelledById() {
+            return this.header != null ? this.ariaId + '_header' : null;
+        }
+    },
+    directives: {
+        'ripple': _ripple_Ripple__WEBPACK_IMPORTED_MODULE_2__.default
+    }
+});
+
+
+/***/ }),
+
 /***/ "./node_modules/primevue/dropdown/Dropdown.vue":
 /*!*****************************************************!*\
   !*** ./node_modules/primevue/dropdown/Dropdown.vue ***!
@@ -11152,6 +11594,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/primevue/dialog/Dialog.vue?vue&type=style&index=0&lang=css&":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/primevue/dialog/Dialog.vue?vue&type=style&index=0&lang=css& ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _style_loader_dist_cjs_js_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_vue_loader_lib_index_js_vue_loader_options_Dialog_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../style-loader/dist/cjs.js!../../css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../vue-loader/lib/loaders/stylePostLoader.js!../../postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../vue-loader/lib/index.js??vue-loader-options!./Dialog.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/primevue/dialog/Dialog.vue?vue&type=style&index=0&lang=css&");
+
+
+/***/ }),
+
 /***/ "./node_modules/primevue/dropdown/Dropdown.vue?vue&type=style&index=0&lang=css&":
 /*!**************************************************************************************!*\
   !*** ./node_modules/primevue/dropdown/Dropdown.vue?vue&type=style&index=0&lang=css& ***!
@@ -11628,6 +12083,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_TableLoadingBody_vue_vue_type_template_id_1741dc6c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_TableLoadingBody_vue_vue_type_template_id_1741dc6c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../vue-loader/lib/index.js??vue-loader-options!./TableLoadingBody.vue?vue&type=template&id=1741dc6c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/primevue/datatable/TableLoadingBody.vue?vue&type=template&id=1741dc6c&");
+
+
+/***/ }),
+
+/***/ "./node_modules/primevue/dialog/Dialog.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./node_modules/primevue/dialog/Dialog.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _vue_loader_lib_index_js_vue_loader_options_Dialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../vue-loader/lib/index.js??vue-loader-options!./Dialog.vue?vue&type=script&lang=js& */ "./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/primevue/dialog/Dialog.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_vue_loader_lib_index_js_vue_loader_options_Dialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./node_modules/primevue/dialog/Dialog.vue?vue&type=template&id=2c914024&":
+/*!********************************************************************************!*\
+  !*** ./node_modules/primevue/dialog/Dialog.vue?vue&type=template&id=2c914024& ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_Dialog_vue_vue_type_template_id_2c914024___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_Dialog_vue_vue_type_template_id_2c914024___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_Dialog_vue_vue_type_template_id_2c914024___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../vue-loader/lib/index.js??vue-loader-options!./Dialog.vue?vue&type=template&id=2c914024& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/primevue/dialog/Dialog.vue?vue&type=template&id=2c914024&");
 
 
 /***/ }),
@@ -14242,6 +14730,186 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/primevue/dialog/Dialog.vue?vue&type=template&id=2c914024&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/primevue/dialog/Dialog.vue?vue&type=template&id=2c914024& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.maskVisible
+    ? _c(
+        "div",
+        { ref: "mask", class: _vm.maskClass, on: { click: _vm.onMaskClick } },
+        [
+          _c(
+            "transition",
+            {
+              attrs: { name: "p-dialog" },
+              on: {
+                "before-enter": _vm.onBeforeEnter,
+                enter: _vm.onEnter,
+                "before-leave": _vm.onBeforeLeave,
+                leave: _vm.onLeave,
+                "after-leave": _vm.onAfterLeave,
+                appear: _vm.onAppear
+              }
+            },
+            [
+              _vm.visible
+                ? _c(
+                    "div",
+                    _vm._g(
+                      _vm._b(
+                        {
+                          ref: "dialog",
+                          class: _vm.dialogClass,
+                          style: _vm.dialogStyle,
+                          attrs: {
+                            role: "dialog",
+                            "aria-labelledby": _vm.ariaLabelledById,
+                            "aria-modal": _vm.modal
+                          }
+                        },
+                        "div",
+                        _vm.$attrs,
+                        false
+                      ),
+                      _vm.listeners
+                    ),
+                    [
+                      _vm.showHeader
+                        ? _c(
+                            "div",
+                            { staticClass: "p-dialog-header" },
+                            [
+                              _vm._t("header", function() {
+                                return [
+                                  _vm.header
+                                    ? _c(
+                                        "span",
+                                        {
+                                          staticClass: "p-dialog-title",
+                                          attrs: { id: _vm.ariaLabelledById }
+                                        },
+                                        [_vm._v(_vm._s(_vm.header))]
+                                      )
+                                    : _vm._e()
+                                ]
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "p-dialog-header-icons" },
+                                [
+                                  _vm.maximizable
+                                    ? _c(
+                                        "button",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "ripple",
+                                              rawName: "v-ripple"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "p-dialog-header-icon p-dialog-header-maximize p-link",
+                                          attrs: {
+                                            type: "button",
+                                            tabindex: "-1"
+                                          },
+                                          on: { click: _vm.maximize }
+                                        },
+                                        [
+                                          _c("span", {
+                                            class: _vm.maximizeIconClass
+                                          })
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.closable
+                                    ? _c(
+                                        "button",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "ripple",
+                                              rawName: "v-ripple"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "p-dialog-header-icon p-dialog-header-close p-link",
+                                          attrs: {
+                                            "aria-label": _vm.ariaCloseLabel,
+                                            type: "button",
+                                            tabindex: "-1"
+                                          },
+                                          on: { click: _vm.close }
+                                        },
+                                        [
+                                          _c("span", {
+                                            staticClass:
+                                              "p-dialog-header-close-icon pi pi-times"
+                                          })
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ]
+                              )
+                            ],
+                            2
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "p-dialog-content",
+                          style: _vm.contentStyle
+                        },
+                        [_vm._t("default")],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.footer || _vm.$slots.footer
+                        ? _c(
+                            "div",
+                            { staticClass: "p-dialog-footer" },
+                            [
+                              _vm._t("footer", function() {
+                                return [_vm._v(_vm._s(_vm.footer))]
+                              })
+                            ],
+                            2
+                          )
+                        : _vm._e()
+                    ]
+                  )
+                : _vm._e()
+            ]
+          )
+        ],
+        1
+      )
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/primevue/dropdown/Dropdown.vue?vue&type=template&id=23d670ce&":
 /*!***************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/primevue/dropdown/Dropdown.vue?vue&type=template&id=23d670ce& ***!
@@ -15236,7 +15904,7 @@ var render = function() {
         { staticClass: "row mb-4" },
         [
           _c("Card", {
-            staticClass: "col-5 mr-4 ml-4",
+            staticClass: "col-4 mr-2 ml-2",
             scopedSlots: _vm._u([
               {
                 key: "title",
@@ -15256,7 +15924,7 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("Card", {
-            staticClass: "col-5 ml-4 mr-4",
+            staticClass: "col-4 ml-2 mr-2",
             scopedSlots: _vm._u([
               {
                 key: "title",
@@ -15269,6 +15937,31 @@ var render = function() {
                 key: "content",
                 fn: function() {
                   return [_vm._v("\r\n          16\r\n      ")]
+                },
+                proxy: true
+              }
+            ])
+          }),
+          _vm._v(" "),
+          _c("Card", {
+            staticClass: "col-3 ml-2 mr-2",
+            scopedSlots: _vm._u([
+              {
+                key: "title",
+                fn: function() {
+                  return [_vm._v("\r\n          Link público\r\n      ")]
+                },
+                proxy: true
+              },
+              {
+                key: "content",
+                fn: function() {
+                  return [
+                    _c("Button", {
+                      staticClass: "p-button-rounded p-button-info mr-2",
+                      attrs: { label: "Ir al tablero" }
+                    })
+                  ]
                 },
                 proxy: true
               }
@@ -15328,7 +16021,7 @@ var render = function() {
             },
             [
               _vm._v(" "),
-              _c("Column", { attrs: { field: "title", header: "Título" } }),
+              _c("Column", { attrs: { field: "title", header: "" } }),
               _vm._v(" "),
               _c("Column", {
                 attrs: { field: "id", header: "" },
@@ -15370,7 +16063,8 @@ var render = function() {
                                 attrs: { icon: "pi pi-trash" },
                                 on: {
                                   click: function($event) {
-                                    return _vm.deleteBoard(slotProps.data.id)
+                                    _vm.display = true
+                                    _vm.deleteFocus = slotProps.data.id
                                   }
                                 }
                               })
@@ -15383,13 +16077,69 @@ var render = function() {
                   ],
                   null,
                   false,
-                  3552686030
+                  1574328068
                 )
               })
             ],
             1
           )
-        : _vm._e()
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "Dialog",
+        {
+          attrs: { header: "Header", visible: _vm.display },
+          on: {
+            "update:visible": function($event) {
+              _vm.display = $event
+            }
+          },
+          scopedSlots: _vm._u([
+            {
+              key: "header",
+              fn: function() {
+                return [_c("h3", [_vm._v("Borrar tablero")])]
+              },
+              proxy: true
+            },
+            {
+              key: "footer",
+              fn: function() {
+                return [
+                  _c("Button", {
+                    staticClass: "p-button-text",
+                    attrs: { label: "Cancelar", icon: "pi pi-times" },
+                    on: {
+                      click: function($event) {
+                        _vm.display = false
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("Button", {
+                    attrs: {
+                      label: "Confirmar",
+                      icon: "pi pi-check",
+                      autofocus: ""
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteBoard(_vm.deleteFocus)
+                      }
+                    }
+                  })
+                ]
+              },
+              proxy: true
+            }
+          ])
+        },
+        [
+          _vm._v(
+            "\r\n\t  ¿Está seguro que desea eliminar el tablero?\r\n\r\n    "
+          )
+        ]
+      )
     ],
     1
   )
@@ -15620,7 +16370,16 @@ var staticRenderFns = [
               ])
             ]
           )
-        ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success btn-lg btn-block",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("Guardar")]
+        )
       ])
     ])
   }

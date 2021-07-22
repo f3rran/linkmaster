@@ -32,6 +32,7 @@
                 <option value="helvetica">Helvetica</option>
             </select>
             </div>
+            <button type="submit" class="btn btn-success btn-lg btn-block">Guardar</button>
         </form>
     </div>
 </template>

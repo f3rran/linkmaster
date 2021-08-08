@@ -66,6 +66,11 @@ export default {
                 console.log("Ajustes guardados");
                 that.$toast.add({severity:'success', summary: 'Ajustes actualizados correctamente', detail:'', life: 3000});
 
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+                that.$toast.add({severity:'error', summary: 'Error al actualizar ajustes', detail:'Contacte con soporte', life: 3000});
             });
         },
         getForm(){

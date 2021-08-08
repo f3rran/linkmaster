@@ -2247,6 +2247,15 @@ __webpack_require__.r(__webpack_exports__);
           detail: '',
           life: 3000
         });
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+        that.$toast.add({
+          severity: 'error',
+          summary: 'Error al actualizar ajustes',
+          detail: 'Contacte con soporte',
+          life: 3000
+        });
       });
     },
     getForm: function getForm() {

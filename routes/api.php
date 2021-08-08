@@ -26,4 +26,7 @@ Route::group([
     Route::get('boards/index', 'LinkBoardController@index');
     Route::delete('boards/delete', 'LinkBoardController@delete');
 
+    Route::post('settings/store', 'SettingsController@store');
+    Route::get('settings/show', 'SettingsController@show');
+
 });

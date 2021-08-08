@@ -2175,6 +2175,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2214,7 +2216,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      form: Object
+    };
+  },
+  mounted: function mounted() {
+    this.getForm();
+  },
+  methods: {
+    storeForm: function storeForm() {
+      var that = this;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/settings/store', {
+        data: {
+          form: this.form
+        }
+      }).then(function (response) {
+        console.log("Ajustes guardados");
+      });
+    },
+    getForm: function getForm() {
+      var that = this;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/settings/show').then(function (response) {
+        that.form = response.data;
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -16277,109 +16307,170 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("h1", [_vm._v("Ajustes")]),
+    _vm._v(" "),
+    _c("form", { attrs: { action: "#" } }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { staticClass: "form-label", attrs: { for: "title" } }, [
+          _vm._v("Título")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.title,
+              expression: "form.title"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", name: "title", id: "title" },
+          domProps: { value: _vm.form.title },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "title", $event.target.value)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "label",
+          { staticClass: "form-label", attrs: { for: "description" } },
+          [_vm._v("Descripción")]
+        ),
+        _vm._v(" "),
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.description,
+              expression: "form.description"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: {
+            name: "description",
+            id: "description",
+            cols: "30",
+            rows: "4"
+          },
+          domProps: { value: _vm.form.description },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "description", $event.target.value)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "label",
+          { staticClass: "form-label", attrs: { for: "tipography" } },
+          [_vm._v("Tipografía")]
+        ),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.tipography,
+                expression: "form.tipography"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { name: "tipography", id: "tipography" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.form,
+                  "tipography",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "arial" } }, [_vm._v("Arial")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "helvetica" } }, [
+              _vm._v("Helvetica")
+            ])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-success btn-lg btn-block mt-2",
+          attrs: { type: "submit" },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.storeForm()
+            }
+          }
+        },
+        [_vm._v("Guardar")]
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("h1", [_vm._v("Ajustes")]),
-      _vm._v(" "),
-      _c("form", { attrs: { action: "#" } }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "form-label", attrs: { for: "title" } }, [
-            _vm._v("Título")
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "text", name: "title", id: "title" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c(
-            "label",
-            { staticClass: "form-label", attrs: { for: "description" } },
-            [_vm._v("Descripción")]
-          ),
-          _vm._v(" "),
-          _c("textarea", {
-            staticClass: "form-control",
-            attrs: {
-              name: "description",
-              id: "description",
-              cols: "30",
-              rows: "4"
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "form-group col-6" }, [
-            _c(
-              "label",
-              { staticClass: "form-label", attrs: { for: "header-pic" } },
-              [_vm._v("Imagen de cabecera")]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control-file",
-              attrs: { type: "file", name: "header-pic", id: "header-pic" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group col-6" }, [
-            _c(
-              "label",
-              { staticClass: "form-label", attrs: { for: "background-pic" } },
-              [_vm._v("Fondo")]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control-file",
-              attrs: {
-                type: "file",
-                name: "background-pic",
-                id: "background-pic"
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c(
-            "label",
-            { staticClass: "form-label", attrs: { for: "tipography" } },
-            [_vm._v("Tipografía")]
-          ),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              staticClass: "form-control",
-              attrs: { name: "tipography", id: "tipography" }
-            },
-            [
-              _c("option", { attrs: { value: "arial" } }, [_vm._v("Arial")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "helvetica" } }, [
-                _vm._v("Helvetica")
-              ])
-            ]
-          )
-        ]),
-        _vm._v(" "),
+    return _c("div", { staticClass: "row mt-2" }, [
+      _c("div", { staticClass: "form-group col-6 mb-3" }, [
         _c(
-          "button",
-          {
-            staticClass: "btn btn-success btn-lg btn-block",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("Guardar")]
-        )
+          "label",
+          { staticClass: "form-label", attrs: { for: "header-pic" } },
+          [_vm._v("Imagen de cabecera")]
+        ),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "file", name: "header-pic", id: "header-pic" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group col-6 mb-3" }, [
+        _c(
+          "label",
+          { staticClass: "form-label", attrs: { for: "background-pic" } },
+          [_vm._v("Fondo")]
+        ),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "file", name: "background-pic", id: "background-pic" }
+        })
       ])
     ])
   }

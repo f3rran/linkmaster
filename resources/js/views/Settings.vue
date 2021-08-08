@@ -34,10 +34,12 @@
             </div>
             <button type="submit" class="btn btn-success btn-lg btn-block mt-2" @click.prevent="storeForm()">Guardar</button>
         </form>
+        <Toast position="top-right" />
     </div>
 </template>
 
 <script>
+import Toast from 'primevue/toast';
 
 import axios from 'axios'
 export default {
@@ -45,6 +47,9 @@ export default {
         return {
             form: Object,
         }
+    },
+    components: {
+        Toast
     },
     mounted() {
         this.getForm();
@@ -59,6 +64,8 @@ export default {
             })
             .then(function(response){
                 console.log("Ajustes guardados");
+                that.$toast.add({severity:'success', summary: 'Ajustes actualizados correctamente', detail:'', life: 3000});
+
             });
         },
         getForm(){

@@ -12,7 +12,7 @@
             <hr>
             </div>
         </header>
-<br>
+    <br>
         <main role="main" class="container">
             <router-view></router-view>
         </main>

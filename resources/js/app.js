@@ -12,6 +12,9 @@ import Edit from './views/LinkBoards/Edit.vue'
 import PrimeVue from 'primevue/config';
 Vue.use(PrimeVue);
 
+import ToastService from 'primevue/toastservice';
+Vue.use(ToastService);
+
 const router = new VueRouter({
     mode: 'history',
     routes: [

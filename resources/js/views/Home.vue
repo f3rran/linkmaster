@@ -1,7 +1,7 @@
 <template>
 <div class="container">
   <div class="row mb-4">
-    <Card class="col-4 mr-2 ml-2">
+    <Card class="col-6 col-sm-4 mr-2 ml-2">
       <template #title>
           Visitas
       </template>
@@ -9,7 +9,7 @@
           32
       </template>
     </Card>
-    <Card class="col-4 ml-2 mr-2">
+    <Card class="col-6 col-sm-4 ml-2 mr-2">
       <template #title>
           Clicks
       </template>
@@ -17,7 +17,7 @@
           16
       </template>
     </Card>
-    <Card class="col-3 ml-2 mr-2">
+    <Card class="col-12 col-sm-4 ml-2 mr-2">
       <template #title>
           Link público
       </template>
@@ -31,7 +31,7 @@
         <div class="table-header">
             <div class="d-flex justify-content-between">
               <h2 class="col-2">Tableros</h2>
-              <router-link class="col-2" :to="{ name: 'Create LinkBoard'}"><Button class="col-12" label="Crear" /></router-link>
+              <router-link class="col-4" :to="{ name: 'Create LinkBoard'}"><Button class="col-12" label="Crear" /></router-link>
             </div>
         </div>
     </template>

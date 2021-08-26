@@ -16581,7 +16581,7 @@ var render = function() {
         { staticClass: "row mb-4" },
         [
           _c("Card", {
-            staticClass: "col-4 mr-2 ml-2",
+            staticClass: "col-6 col-sm-4 mr-2 ml-2",
             scopedSlots: _vm._u([
               {
                 key: "title",
@@ -16601,7 +16601,7 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("Card", {
-            staticClass: "col-4 ml-2 mr-2",
+            staticClass: "col-6 col-sm-4 ml-2 mr-2",
             scopedSlots: _vm._u([
               {
                 key: "title",
@@ -16621,7 +16621,7 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("Card", {
-            staticClass: "col-3 ml-2 mr-2",
+            staticClass: "col-12 col-sm-4 ml-2 mr-2",
             scopedSlots: _vm._u([
               {
                 key: "title",
@@ -16671,7 +16671,7 @@ var render = function() {
                               _c(
                                 "router-link",
                                 {
-                                  staticClass: "col-2",
+                                  staticClass: "col-4",
                                   attrs: { to: { name: "Create LinkBoard" } }
                                 },
                                 [
@@ -16693,7 +16693,7 @@ var render = function() {
                 ],
                 null,
                 false,
-                2768212389
+                2020312291
               )
             },
             [

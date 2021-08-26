@@ -2223,7 +2223,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      form: Object
+      form: Object,
+      header_pic: '',
+      background_pic: ''
     };
   },
   components: {
@@ -2257,12 +2259,31 @@ __webpack_require__.r(__webpack_exports__);
           life: 3000
         });
       });
+      var formData = new FormData();
+      formData.append('header_pic', this.header_pic);
+      formData.append('background_pic', this.background_pic);
+      console.log(formData);
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/settings/store_pictures', formData).then(function (response) {
+        console.log("Imágenes guardadas");
+        that.$toast.add({
+          severity: 'success',
+          summary: 'Ajustes actualizados correctamente',
+          detail: '',
+          life: 3000
+        });
+      });
     },
     getForm: function getForm() {
       var that = this;
       axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/settings/show').then(function (response) {
         that.form = response.data;
       });
+    },
+    handleHeaderPic: function handleHeaderPic(event) {
+      this.header_pic = event.target.files[0];
+    },
+    handleBackgroundPic: function handleBackgroundPic(event) {
+      this.background_pic = event.target.files[0];
     }
   }
 });
@@ -17003,7 +17024,47 @@ var render = function() {
           })
         ]),
         _vm._v(" "),
-        _vm._m(0),
+        _c("div", { staticClass: "row mt-2" }, [
+          _c("div", { staticClass: "form-group col-6 mb-3" }, [
+            _c(
+              "label",
+              { staticClass: "form-label", attrs: { for: "header-pic" } },
+              [_vm._v("Imagen de cabecera")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              ref: "header_pic",
+              staticClass: "form-control",
+              attrs: {
+                type: "file",
+                name: "header-pic",
+                id: "header-pic",
+                accept: "image/*"
+              },
+              on: { change: _vm.handleHeaderPic }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group col-6 mb-3" }, [
+            _c(
+              "label",
+              { staticClass: "form-label", attrs: { for: "background-pic" } },
+              [_vm._v("Fondo")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              ref: "background_pic",
+              staticClass: "form-control",
+              attrs: {
+                type: "file",
+                name: "background-pic",
+                id: "background-pic",
+                accept: "image/*"
+              },
+              on: { change: _vm.handleBackgroundPic }
+            })
+          ])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
           _c(
@@ -17074,40 +17135,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mt-2" }, [
-      _c("div", { staticClass: "form-group col-6 mb-3" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "header-pic" } },
-          [_vm._v("Imagen de cabecera")]
-        ),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "file", name: "header-pic", id: "header-pic" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-6 mb-3" }, [
-        _c(
-          "label",
-          { staticClass: "form-label", attrs: { for: "background-pic" } },
-          [_vm._v("Fondo")]
-        ),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "file", name: "background-pic", id: "background-pic" }
-        })
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

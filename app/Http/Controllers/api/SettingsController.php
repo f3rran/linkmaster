@@ -27,12 +27,21 @@ class SettingsController extends Controller
     }
 
     public function store(Request $request){
-
+        clock($request);
         $settings = Settings::findOrFail($request->data['form']['id']);
         $settings->fill($request->data['form']);
 
         $settings->save();
 
         return true;
+    }
+
+    public function store_pictures(Request $request){
+        clock($request->file('header_pic'));
+
+        $settings = Settings::where('user_id', auth()->user()->id)->first();
+
+        $settings->addMedia($request->file('header_pic'))->toMediaCollection('header_pic');
+        $settings->addMedia($request->file('background_pic'))->toMediaCollection('background_pic');
     }
 }

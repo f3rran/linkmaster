@@ -16,12 +16,12 @@
             <div class="row mt-2">
                 <div class="form-group col-6 mb-3">
                     <label for="header-pic" class="form-label">Imagen de cabecera</label>
-                    <input type="file" name="header-pic" id="header-pic" class="form-control">
+                    <input type="file" name="header-pic" id="header-pic" class="form-control" ref="header_pic" accept="image/*" v-on:change="handleHeaderPic">
                 </div>
 
                 <div class="form-group col-6 mb-3">
                     <label for="background-pic" class="form-label">Fondo</label>
-                    <input type="file" name="background-pic" id="background-pic" class="form-control">
+                    <input type="file" name="background-pic" id="background-pic" class="form-control"  ref="background_pic" accept="image/*" v-on:change="handleBackgroundPic">
                 </div>
             </div>
 
@@ -46,6 +46,8 @@ export default {
     data() {
         return {
             form: Object,
+            header_pic: '',
+            background_pic: ''
         }
     },
     components: {
@@ -59,7 +61,7 @@ export default {
             const that = this;
             axios.post('/api/settings/store', {
                 data: {
-                form: this.form
+                    form: this.form
                 }
             })
             .then(function(response){
@@ -72,6 +74,19 @@ export default {
                 console.log(error);
                 that.$toast.add({severity:'error', summary: 'Error al actualizar ajustes', detail:'Contacte con soporte', life: 3000});
             });
+
+            let formData = new FormData();
+            formData.append('header_pic', this.header_pic);
+            formData.append('background_pic', this.background_pic);
+            console.log(formData);
+            axios.post('/api/settings/store_pictures', 
+                    formData
+            )
+            .then(function(response){
+                console.log("Imágenes guardadas");
+                that.$toast.add({severity:'success', summary: 'Ajustes actualizados correctamente', detail:'', life: 3000});
+
+            })
         },
         getForm(){
             const that = this;
@@ -79,6 +94,12 @@ export default {
             .then(function(response){
                 that.form = response.data;
             })
+        },
+        handleHeaderPic(event){
+            this.header_pic = event.target.files[0];
+        },
+        handleBackgroundPic(event){
+            this.background_pic = event.target.files[0];
         }
     }
 }

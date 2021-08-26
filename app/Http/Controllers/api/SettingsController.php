@@ -41,7 +41,9 @@ class SettingsController extends Controller
 
         $settings = Settings::where('user_id', auth()->user()->id)->first();
 
-        $settings->addMedia($request->file('header_pic'))->toMediaCollection('header_pic');
-        $settings->addMedia($request->file('background_pic'))->toMediaCollection('background_pic');
+        $settings->addMedia($request->file('header_pic'))
+                 ->toMediaCollection('header_pic');
+        $settings->addMedia($request->file('background_pic'))
+                 ->toMediaCollection('background_pic');
     }
 }

@@ -16846,7 +16846,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _vm.id
-      ? _c("h1", [_vm._v("Editando Linkboard: " + _vm._s(_vm.id))])
+      ? _c("h1", [_vm._v("Editando tablero: " + _vm._s(_vm.id))])
       : _c("h1", [_vm._v("Creando Linkboard")]),
     _vm._v(" "),
     _c("hr"),

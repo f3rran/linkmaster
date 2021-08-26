@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-      <h1 v-if="id">Editando Linkboard: {{id}}</h1>
+      <h1 v-if="id">Editando tablero: {{id}}</h1>
       <h1 v-else>Creando Linkboard</h1>
       <hr>
       <div class="row">

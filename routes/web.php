@@ -22,3 +22,7 @@ Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/admin/{any}', 'SpaController@index')->where('any', '.*')->middleware('auth');
+
+Route::get('/home', function () {
+    return redirect('/admin/home');
+});

@@ -39,7 +39,7 @@
     <Column field="id" header="">
       <template #body="slotProps" >
         <div class="d-flex flex-row justify-content-end">
-          <router-link :to="{ name: 'Edit LinkBoard', params: { id: slotProps.data.id}}"><Button icon="pi pi-pencil" class="p-button-rounded p-button-info p-mr-2 mr-2"/></router-link>
+          <router-link :to="{ name: 'Edit LinkBoard', params: { id: parseInt(slotProps.data.id)}}"><Button icon="pi pi-pencil" class="p-button-rounded p-button-info p-mr-2 mr-2"/></router-link>
           <Button @click="display = true; deleteFocus = slotProps.data.id" icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2"/>
         </div>
       </template>

@@ -2119,6 +2119,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var primevue_button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! primevue/button */ "./node_modules/primevue/button/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -2152,6 +2154,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     id: Number,
@@ -2159,6 +2162,38 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {
     Button: primevue_button__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  data: function data() {
+    return {
+      board: []
+    };
+  },
+  mounted: function mounted() {
+    this.initView();
+  },
+  methods: {
+    initView: function initView() {
+      var that = this;
+      console.log("ID: " + this.id); //En caso de que haya ID se trata de una edición
+      //Hace falta el esquema
+
+      if (this.id) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/boards/show', {
+          params: {
+            id: this.id
+          }
+        }).then(function (response) {
+          console.log(response);
+          that.board = JSON.parse(response.data.content);
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
+    },
+    deleteLink: function deleteLink(id) {
+      console.log(id); //Modal de confirmación
+      //Borrar del esquema y actualizar en BD
+    }
   }
 });
 
@@ -16720,7 +16755,9 @@ var render = function() {
                                   attrs: {
                                     to: {
                                       name: "Edit LinkBoard",
-                                      params: { id: slotProps.data.id }
+                                      params: {
+                                        id: parseInt(slotProps.data.id)
+                                      }
                                     }
                                   }
                                 },
@@ -16754,7 +16791,7 @@ var render = function() {
                   ],
                   null,
                   false,
-                  1574328068
+                  623747267
                 )
               })
             ],
@@ -16861,65 +16898,67 @@ var render = function() {
             attrs: { label: "Añadir enlace" }
           }),
           _vm._v(" "),
-          _c("div", { staticClass: "mb-2 custom-card" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _c(
+          _vm._l(_vm.board, function(ref) {
+            var link = ref.link
+            var id = ref.id
+            var title = ref.title
+            return _c(
               "div",
-              { staticClass: "d-flex flex-row justify-content-around" },
+              { key: link.id, staticClass: "mb-2 custom-card" },
               [
-                _c("Button", {
-                  staticClass: "p-button-rounded p-button-text",
-                  attrs: { icon: "pi pi-check" }
-                }),
+                _c("div", { staticClass: "d-flex flex-row ml-2" }, [
+                  _c("h4", { staticClass: "mt-2" }, [_vm._v(_vm._s(title))])
+                ]),
                 _vm._v(" "),
-                _c("Button", {
-                  staticClass: "p-button-rounded p-button-text",
-                  attrs: { icon: "pi pi-cog" }
-                }),
+                _c("div", { staticClass: "d-flex flex-row" }, [
+                  _c("a", { attrs: { href: link, target: "_blank" } }, [
+                    _c("h6", { staticClass: "ml-2" }, [_vm._v(_vm._s(link))])
+                  ])
+                ]),
                 _vm._v(" "),
-                _c("Button", {
-                  staticClass: "p-button-rounded p-button-text",
-                  attrs: { icon: "pi pi-pencil" }
-                }),
-                _vm._v(" "),
-                _c("Button", {
-                  staticClass: "p-button-rounded p-button-text",
-                  attrs: { icon: "pi pi-trash" }
-                })
-              ],
-              1
+                _c(
+                  "div",
+                  { staticClass: "d-flex flex-row justify-content-around" },
+                  [
+                    _c("Button", {
+                      staticClass: "p-button-rounded p-button-text",
+                      attrs: { icon: "pi pi-check" }
+                    }),
+                    _vm._v(" "),
+                    _c("Button", {
+                      staticClass: "p-button-rounded p-button-text",
+                      attrs: { icon: "pi pi-cog" }
+                    }),
+                    _vm._v(" "),
+                    _c("Button", {
+                      staticClass: "p-button-rounded p-button-text",
+                      attrs: { icon: "pi pi-pencil" }
+                    }),
+                    _vm._v(" "),
+                    _c("Button", {
+                      staticClass: "p-button-rounded p-button-text",
+                      attrs: { icon: "pi pi-trash" },
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteLink(id)
+                        }
+                      }
+                    })
+                  ],
+                  1
+                )
+              ]
             )
-          ])
+          })
         ],
-        1
+        2
       ),
       _vm._v(" "),
-      _vm._m(2)
+      _vm._m(0)
     ])
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-flex flex-row ml-2" }, [
-      _c("h4", { staticClass: "mt-2" }, [_vm._v("Título")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-flex flex-row" }, [
-      _c("a", { attrs: { href: "#" } }, [
-        _c("h6", { staticClass: "ml-2" }, [_vm._v("www.google.es")])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

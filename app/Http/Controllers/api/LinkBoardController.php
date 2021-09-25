@@ -29,4 +29,18 @@ class LinkBoardController extends Controller
 
         return false;
     }
+
+    public function show(Request $request){
+        $user = auth()->user();
+        clock($request->get('id'));
+
+        $board = LinkBoard::findOrFail($request->get('id'));
+
+        if ($board->user_id == $user->id) {
+ 
+            return $board;
+         }
+ 
+         return false;
+    }
 }

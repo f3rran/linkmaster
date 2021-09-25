@@ -24,6 +24,7 @@ Route::group([
     'as' => 'api.',
 ], function () {
     Route::get('boards/index', 'LinkBoardController@index');
+    Route::get('boards/show', 'LinkBoardController@show');
     Route::delete('boards/delete', 'LinkBoardController@delete');
 
     Route::post('settings/store', 'SettingsController@store');

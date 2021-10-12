@@ -14,7 +14,7 @@
                         <a :href="link" target="_blank"><h6 class="ml-2">{{link}}</h6></a>
                   </div>
                   <div class="d-flex flex-row justify-content-around">
-                        <Button icon="pi pi-check" class="p-button-rounded p-button-text" />
+                        <Button icon="pi pi-check" class="p-button-rounded p-button-outlined" />
                         <Button icon="pi pi-cog" class="p-button-rounded p-button-text" /> 
                         <Button icon="pi pi-pencil" class="p-button-rounded p-button-text" /> 
                         <Button icon="pi pi-trash" class="p-button-rounded p-button-text" @click="deleteLink(id)"/> 

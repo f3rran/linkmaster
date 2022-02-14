@@ -32,7 +32,7 @@
             <p class="lead">
             <a href="#" class="btn btn-lg btn-secondary">Saber más</a>
             </p>
-            <img class="w-100" src="{{asset('images/assets/captura.png')}}" alt="">
+            <img style="width: 375px" src="{{asset('images/assets/captura.png')}}" alt="">
         </main>
 
         <footer class="mastfoot mt-auto">

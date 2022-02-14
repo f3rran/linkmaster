@@ -27,6 +27,7 @@
         </header>
 <br>
         <main role="main" class="inner cover">
+            <img src="{{asset('images/logo-full.png')}}" class="mb-4" alt="" style="width: 280px; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
             <h1 class="cover-heading">Tus enlaces centralizados</h1>
             <p class="lead">En Link Master podrás gestionar todos tus enlaces de interés desde un único lugar accediendo a un solo enlace</p>
             <p class="lead">
